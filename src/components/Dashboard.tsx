@@ -200,7 +200,7 @@ export const Dashboard = () => {
       ) : (
         <div className="bg-card border border-border rounded-lg overflow-hidden">
           {viewMode === 'grid' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-collapse">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-collapse">
               {videos.map((video) => (
                 <div key={video.id} className="group border-[0.5px] border-border/40 hover:bg-muted/30 transition-all duration-300 flex flex-col p-4 gap-4">
                   <div className="relative aspect-video rounded overflow-hidden bg-muted/20">
@@ -235,49 +235,53 @@ export const Dashboard = () => {
               ))}
             </div>
           ) : (
-            <Table>
-              <TableHeader className="bg-muted/20">
-                <TableRow className="border-border">
-                  <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-6 py-4">Thumbnail</TableHead>
-                  <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-6 py-4">Video Title</TableHead>
-                  <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-6 py-4">Duration</TableHead>
-                  <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-6 py-4">Snippet</TableHead>
-                  <TableHead className="text-right text-[10px] uppercase tracking-widest text-muted-foreground px-6 py-4">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {videos.map((video) => (
-                  <TableRow key={video.id} className="border-border hover:bg-muted/20 transition-colors">
-                    <TableCell className="px-6 py-4">
-                      <div className="w-16 h-10 bg-muted/40 rounded overflow-hidden">
-                        <img 
-                          src={video.thumbnail} 
-                          className="w-full h-full object-cover" 
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                    </TableCell>
-                    <TableCell className="px-6 py-4">
-                      <div className="font-semibold text-sm line-clamp-1">{video.title}</div>
-                      <div className="text-[10px] text-muted-foreground font-mono mt-0.5">ID: {video.id.slice(0, 8)}</div>
-                    </TableCell>
-                    <TableCell className="px-6 py-4">
-                       <span className="font-mono text-[10px] bg-muted px-1.5 py-0.5 rounded border border-border/50">{video.duration}</span>
-                    </TableCell>
-                    <TableCell className="px-6 py-4 text-muted-foreground text-xs max-w-[200px] truncate italic">
-                      {video.description || '...'}
-                    </TableCell>
-                    <TableCell className="px-6 py-4 text-right">
-                      <div className="flex justify-end gap-4">
-                         <button onClick={() => startEdit(video)} className="text-[11px] font-bold text-primary uppercase tracking-wider">Edit</button>
-                         <button onClick={() => handleDelete(video.id)} className="text-[11px] font-bold text-destructive uppercase tracking-wider">Delete</button>
-                      </div>
-                    </TableCell>
+            <div className="overflow-x-auto">
+              <Table className="min-w-[600px]">
+                <TableHeader className="bg-muted/20">
+                  <TableRow className="border-border">
+                    <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-4 py-4 w-24">Media</TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-4 py-4">Title</TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-4 py-4 hidden md:table-cell">Duration</TableHead>
+                    <TableHead className="text-[10px] uppercase tracking-widest text-muted-foreground px-4 py-4 hidden md:table-cell">Snippet</TableHead>
+                    <TableHead className="text-right text-[10px] uppercase tracking-widest text-muted-foreground px-4 py-4">Actions</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {videos.map((video) => (
+                    <TableRow key={video.id} className="border-border hover:bg-muted/20 transition-colors">
+                      <TableCell className="px-4 py-4">
+                        <div className="w-16 h-10 bg-muted/40 rounded overflow-hidden">
+                          <img 
+                            src={video.thumbnail} 
+                            className="w-full h-full object-cover" 
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                      </TableCell>
+                      <TableCell className="px-4 py-4">
+                        <div className="font-semibold text-sm line-clamp-1">{video.title}</div>
+                        <div className="text-[10px] text-muted-foreground font-mono mt-0.5">ID: {video.id.slice(0, 8)}</div>
+                        <div className="font-mono text-[10px] text-muted-foreground mt-1 md:hidden">{video.duration}</div>
+                      </TableCell>
+                      <TableCell className="px-4 py-4 hidden md:table-cell">
+                         <span className="font-mono text-[10px] bg-muted px-1.5 py-0.5 rounded border border-border/50">{video.duration}</span>
+                      </TableCell>
+                      <TableCell className="px-4 py-4 text-muted-foreground text-xs max-w-[200px] truncate italic hidden md:table-cell">
+                        {video.description || '...'}
+                      </TableCell>
+                      <TableCell className="px-4 py-4 text-right">
+                        <div className="flex justify-end gap-3 md:gap-4">
+                           <button onClick={() => startEdit(video)} className="text-[11px] font-bold text-primary uppercase tracking-wider">Edit</button>
+                           <button onClick={() => handleDelete(video.id)} className="text-[11px] font-bold text-destructive uppercase tracking-wider">Delete</button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
           )}
+
         </div>
       )}
     </div>
