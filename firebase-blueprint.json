@@ -1,0 +1,26 @@
+{
+  "entities": {
+    "Video": {
+      "title": "Video Entity",
+      "description": "Information about a video in the collection",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "The title of the video" },
+        "thumbnail": { "type": "string", "description": "URL to the video thumbnail image" },
+        "duration": { "type": "string", "description": "Duration of the video (e.g., 04:30)" },
+        "description": { "type": "string", "description": "Detailed description of the video" },
+        "videoUrl": { "type": "string", "description": "Target URL for the video" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the video was added" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "When the video was last updated" },
+        "ownerId": { "type": "string", "description": "The UID of the user who added the video" }
+      },
+      "required": ["title", "thumbnail", "duration", "videoUrl", "ownerId"]
+    }
+  },
+  "firestore": {
+    "/videos/{videoId}": {
+      "schema": "Video",
+      "description": "Collection of videos"
+    }
+  }
+}
