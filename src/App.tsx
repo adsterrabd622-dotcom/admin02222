@@ -52,7 +52,7 @@ export default function App() {
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 min-h-0">
         <header className="h-14 md:h-16 border-b bg-card px-4 md:px-8 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-4">
             <h1 className="font-semibold text-[10px] md:text-sm uppercase tracking-widest text-muted-foreground">
