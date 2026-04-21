@@ -45,14 +45,14 @@ export const Dashboard = ({ activeTab }: { activeTab: 'dashboard' | 'media' }) =
       if (editingVideo) {
         await updateDoc(doc(db, 'videos', editingVideo.id), {
           ...data,
-          updatedAt: serverTimestamp(),
+          updatedAt: new Date().toISOString(),
         });
         toast.success('Video updated successfully');
       } else {
         await addDoc(collection(db, 'videos'), {
           ...data,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
         });
         toast.success('Video added successfully');
       }
