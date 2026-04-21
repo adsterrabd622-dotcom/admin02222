@@ -23,6 +23,21 @@ service cloud.firestore {
              data.videoUrl is string && data.videoUrl.size() <= 500;
     }
 
+    // App Settings rules
+    match /settings/{docId} {
+      allow read, write: if true;
+    }
+
+    // Users collection rules
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // Withdrawals collection rules
+    match /withdrawals/{withdrawalId} {
+      allow read, write: if true;
+    }
+
     // Video collection rules
     match /videos/{videoId} {
       allow read: if true; 
